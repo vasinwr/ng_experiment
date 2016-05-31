@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+</head>
+<body>
+  Name:
+  <br />
+  <input type ="text" ng-model="search" /> 
+
+  <div class="container" ng-init="customers=[{name:'John', city:'Newyork'}, {name:'Joe', city:'London'}, {name:'Bob', city:'Boston'}]">
+    <ul>
+      <li ng-repeat= "cust in customers | filter: search | orderBy:'city'"> {{ cust.name }} - {{ cust.city }} </li>
+    </ul>
+  </div>
+
+  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+</body>
+</html>
