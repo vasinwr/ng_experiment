@@ -3,25 +3,41 @@
 <head>
 </head>
 <body>
-  Name:
-  <br />
-
-  <div ng-controller="SimpleController">
-    <input type ="text" ng-model="search" /> 
-    <ul>
-      <li ng-repeat= "cust in customers | filter: search | orderBy:'city'"> {{ cust.name }} - {{ cust.city }} </li>
-    </ul>
+  <div>
+    <!-- placeholder for views -->
+    <div ng-view></div>
   </div>
 
   <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
   <script>
-    var app = angular.module('myApp',[]);
+    var app = angular.module('myApp',['ngRoute']);
+
+    app.config(function ($routeProvider) {
+      $routeProvider
+        .when('/',
+            {
+              controller: 'SimpleController',
+              templateUrl: 'Partials/View1.html',
+            })
+        .when('/view2',
+            {
+              controller: 'SimpleController',
+              templateUrl: 'Partials/View2.html'
+            })
+        .otherwise({ redirectTo:'/' });
+    });
+
     app.controller('SimpleController', function($scope){
       $scope.customers = [
         {name:'John', city:'Newyork'}, 
         {name:'Joe', city:'London'}, 
         {name:'Bob', city:'Boston'}
       ];
+
+      $scope.addCustomer = function(){
+        $scope.customers.push({ name: $scope.newCustomer.name, city: $scope.newCustomer.city });
+      };
     });
   </script>
 </body>
