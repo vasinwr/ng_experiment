@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="myApp">
 <head>
 </head>
 <body>
   Name:
   <br />
-  <input type ="text" ng-model="search" /> 
 
-  <div class="container" ng-init="customers=[{name:'John', city:'Newyork'}, {name:'Joe', city:'London'}, {name:'Bob', city:'Boston'}]">
+  <div ng-controller="SimpleController">
+    <input type ="text" ng-model="search" /> 
     <ul>
       <li ng-repeat= "cust in customers | filter: search | orderBy:'city'"> {{ cust.name }} - {{ cust.city }} </li>
     </ul>
   </div>
 
   <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script>
+    var app = angular.module('myApp',[]);
+    app.controller('SimpleController', function($scope){
+      $scope.customers = [
+        {name:'John', city:'Newyork'}, 
+        {name:'Joe', city:'London'}, 
+        {name:'Bob', city:'Boston'}
+      ];
+    });
+  </script>
 </body>
 </html>
