@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('gemStore', []);
+  var app = angular.module('gemStore', ['store-product']);
 
   app.controller('StoreController', function() {
     this.products = gems;
@@ -93,28 +93,6 @@
     };
   });
 
-  app.directive('productDescription', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'product-description.html'
-    };
-  })
 
-  app.directive('productPanel', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'product-panel.html',
-      controller: function(){
-                    this.tab = 1;
-                    this.selectTab = function(selectedTab) {
-                      this.tab = selectedTab;
-                    };
-                    this.isSelected = function(tab) {
-                      return this.tab === tab;
-                    };
-                  },
-      controllerAs: 'panel'
-    };
-  });
 })();
 
