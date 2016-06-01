@@ -45,5 +45,15 @@
       "images/gem-08.gif"
     ]
   }];
+
+  app.controller("PanelController", function(){
+    this.tab = 1;
+    this.selectTab = function(selectedTab) {
+      this.tab = selectedTab;
+    };
+    this.isSelected = function(tab) {
+      return this.tab === tab;
+    };
+  });
 })();
 
